@@ -1,0 +1,329 @@
+:root{
+  --bg1: #fff0f6;
+  --bg2: #fff5f9;
+  --accent: #d6336c;
+  --soft: #ffb6c1;
+  --card: #fff;
+  --muted: #6b6b6b;
+  --maxwidth: 1100px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,var(--bg1),var(--bg2)); /* Default background */
+  color:var(--accent);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Background for the main homepage */
+body.home {
+  background-image: url('assets/images/bg5.jpg'); /* Choose your homepage background image */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Apply blurry background ONLY to the scrapbook page */
+body.scrapbook {
+  background-image: url('assets/images/bg4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative; /* Needed for the overlay */
+}
+
+/* New overlay style for scrapbook page */
+.bg-overlay {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 240, 246, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: -1; /* Place it behind all content */
+}
+
+/* Background for the love letter page */
+body.letter {
+  background-image: url('assets/images/bg6.jpg'); /* Choose your letter page background */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Fade-in for pages */
+.fade-in{ animation: fadeIn 550ms ease both; }
+@keyframes fadeIn { from { opacity:0; transform: translateY(6px);} to { opacity:1; transform:none;} }
+
+/* Top bar */
+.topbar{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  padding:12px 20px;
+  gap:8px;
+}
+.nav-small{ text-decoration:none; color:var(--accent); font-weight:600; margin-right:auto; }
+.icon-btn{ border:none; background:transparent; font-size:18px; cursor:pointer; }
+
+/* Center stage */
+.center-stage{ display:flex; justify-content:center; align-items:center; min-height:70vh; padding:20px; }
+
+.card.welcome-card{
+  max-width:760px;
+  width:100%;
+  background:var(--card);
+  padding:30px;
+  border-radius:20px;
+  box-shadow: 0 10px 30px rgba(214,51,108,0.08);
+  text-align:center;
+}
+.heart-big{ font-size:48px; margin-bottom:6px; }
+.main-nav{ margin-top:18px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:8px; }
+
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  padding:10px 18px;
+  border-radius:999px;
+  background:var(--soft);
+  color:white;
+  font-weight:600;
+  box-shadow:0 6px 18px rgba(214,51,108,0.12);
+  border:none;
+  cursor:pointer;
+}
+
+/* section pages */
+.section{ max-width:var(--maxwidth); margin:40px auto; padding:0 18px; }
+
+.timeline-container{
+  margin-top:28px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.event{
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
+  background:var(--card);
+  padding:16px;
+  border-radius:12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+.event-date{ min-width:120px; font-weight:600; color:var(--muted) }
+
+/* Gallery */
+.gallery {
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 40px;
+  padding: 20px; */
+  column-count: 4;          /* Number of columns */
+  column-gap: 18px;          /* Small gap between photos */
+  padding: 10px;
+}
+.gallery .photo {
+  display: inline-block;
+  margin-bottom: 8px;
+  width: 100%;
+  break-inside: avoid; /* prevents image cuts */
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);            /* let it scale naturally */
+}
+.gallery img {
+    width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+ 
+  
+}
+
+.gallery p {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 4px;
+  color: #0e0e0e;
+}
+
+.photo {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+}
+.photo:hover {
+  transform: scale(1.05);
+}
+.photo img {
+  width: 100%;
+  border-radius: 12px;
+}
+@media (max-width: 1024px) {
+  .gallery {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    column-count: 1;   /* Full width for mobile */
+  }
+}
+/* Lightbox overlay */
+.lightbox {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+/* Show state */
+.lightbox.active {
+  visibility: visible;
+  opacity: 1;
+   display: flex;
+}
+
+/* Hide state */
+.lightbox:not(.active) {
+    visibility: hidden;
+    opacity: 0;
+     display: none;
+}
+
+.lightbox-content {
+  display: flex;
+  background: #fffaf0;
+  border-radius: 15px;
+  max-width: 900px;
+  width: 95%;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  max-height: 90vh; /* Limit the max height of the content box */
+  overflow: hidden; /* Hide overflow from the container */
+}
+
+.lightbox img {
+  max-width: 60%; /* Allow image to take a bit more width */
+  border-radius: 12px;
+  object-fit: contain; /* This is the key: scales the image down to fit */
+  max-height: 85vh; /* Ensure image height fits within the viewport */
+}
+
+.note {
+  flex: 1;
+  margin-left: 20px;
+  padding: 0 15px; /* Adjust padding */
+  background: repeating-linear-gradient(
+    to bottom,
+    #fffdf5,
+    #fffdf5 28px,
+    #b0c4de 29px
+  );
+  border: 2px solid #d3bebe;
+  border-radius: 10px;
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  color: #333;
+  text-align: left; 
+  overflow-y: auto;
+}
+
+#closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .lightbox-content {
+    flex-direction: column; /* Stack image and note on small screens */
+    width: 90%;
+    max-height: 95vh;
+    padding: 15px;
+  }
+  .lightbox img {
+    max-width: 100%; /* Image takes full width */
+    max-height: 55vh; /* Limit image height */
+  }
+  .note {
+    margin-left: 0;
+    margin-top: 15px; /* Add space between image and note */
+    flex-grow: 1;
+  }
+}
+
+
+/* Letter styles */
+.letter-wrap{ text-align:center; }
+.letter-content{ max-width:760px; margin:18px auto; background:var(--card); padding:22px; border-radius:14px; box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
+.letter-text{ font-family: 'Noto Serif Bengali', serif; font-size:20px; color:#030303; text-align:left; line-height:1.7; white-space:pre-wrap; min-height:160px; }
+
+/* controls */
+.letter-actions{ margin-top:12px; display:flex; justify-content:center; gap:12px }
+
+/* New container for hearts to solve stacking context issues */
+#hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allows clicks to go through to content below */
+  z-index: 10000; /* Highest z-index */
+}
+/* floating hearts */
+.heart {
+  position:fixed;
+  bottom:-20px;
+  width:18px;
+  height:18px;
+  transform: rotate(45deg);
+  z-index: 1000;
+  pointer-events:none;
+  opacity:0.95;
+}
+.heart::before, .heart::after{ content:''; position:absolute; width:18px; height:18px; border-radius:50%; background:inherit; }
+.heart::before { top:-9px; left:0; }
+.heart::after { left:-9px; top:0; }
+
+@keyframes rise {
+  from { transform: translateY(0) rotate(45deg); opacity:1; }
+  to { transform: translateY(-120vh) rotate(45deg); opacity:0; }
+}
+
+/* responsive */
+@media (max-width:640px){
+  .letter-text{ font-size:18px }
+}
