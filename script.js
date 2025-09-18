@@ -120,13 +120,18 @@ document.addEventListener('DOMContentLoaded', function () {
   // if on letter page: run effect using window._bengaliLetter (set in love-letter.html)
   const letterEl = document.getElementById('letterText')
   if (letterEl) {
-    const text = window._bengaliLetter || letterEl.textContent || '';
-    typeWriterEffect(text, letterEl, 55);
-
     const replay = document.getElementById('replayLetter');
-    if (replay) replay.addEventListener('click', () => {
-      typeWriterEffect(text, letterEl, 55);
-    });
+    if (replay) {
+      replay.style.display = 'none'; // Hide the replay button
+    }
+  }
+    // const text = window._bengaliLetter || letterEl.textContent || '';
+    // typeWriterEffect(text, letterEl, 55);
+
+    // const replay = document.getElementById('replayLetter');
+    // if (replay) replay.addEventListener('click', () => {
+    //   typeWriterEffect(text, letterEl, 55);
+    // });
 
     // print/save
     const downloadBtn = document.getElementById('downloadLetter');
