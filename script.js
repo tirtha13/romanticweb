@@ -97,25 +97,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /* ---------- Typewriter effect for Bengali letter ---------- */
-  function typeWriterEffect(text, el, speed = 60) {
-    if (!el) return;
-    el.innerHTML = '';
-    let i = 0;
-    function step() {
-      if (i >= text.length) return;
-      const ch = text[i];
-      if (ch === '\n') {
-        el.innerHTML += '<br>';
-      } else {
-        // escape HTML special characters
-        const toAppend = (ch === '<') ? '&lt;' : (ch === '&') ? '&amp;' : ch;
-        el.innerHTML += toAppend;
-      }
-      i++;
-      setTimeout(step, speed);
-    }
-    step();
-  }
+  // function typeWriterEffect(text, el, speed = 60) {
+  //   if (!el) return;
+  //   el.innerHTML = '';
+  //   let i = 0;
+  //   function step() {
+  //     if (i >= text.length) return;
+  //     const ch = text[i];
+  //     if (ch === '\n') {
+  //       el.innerHTML += '<br>';
+  //     } else {
+  //       // escape HTML special characters
+  //       const toAppend = (ch === '<') ? '&lt;' : (ch === '&') ? '&amp;' : ch;
+  //       el.innerHTML += toAppend;
+  //     }
+  //     i++;
+  //     setTimeout(step, speed);
+  //   }
+  //   step();
+  // }
 
   // if on letter page: run effect using window._bengaliLetter (set in love-letter.html)
   const letterEl = document.getElementById('letterText')
